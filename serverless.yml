@@ -1,0 +1,158 @@
+service: Serverless-Boiler-Plate
+frameworkVersion: '3'
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: local
+  region: eu-west-1
+  apiKeys:
+    - apikey_1_${self:custom.stage}
+  environment:
+    STAGE: ${self:custom.stage}
+    DB_HOST: ${self:custom.DB_HOST.${self:custom.stage}}
+    DB_USER: ${self:custom.DB_USER.${self:custom.stage}}
+    DB_NAME: ${self:custom.DB_NAME.${self:custom.stage}}
+    DB_PASSWORD: ${self:custom.DB_PASSWORD.${self:custom.stage}}
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  DB_DIALECT:
+    local: postgres
+  DB_HOST:
+    local: localhost
+  DB_USER:
+    local: postgres
+  DB_NAME:
+    local: mytestdb
+  DB_PASSWORD:
+    local: postgres
+
+functions:
+  # Books Endpoints
+  getBooks:
+    handler: ./src/functions/book/handler.getBooks
+    timeout: 900
+    events:
+      - http:
+          method: get
+          path: books
+          private: false
+  getBook:
+    handler: ./src/functions/book/handler.getBook
+    timeout: 900
+    events:
+      - http:
+          method: get
+          path: books/{isbn}
+          private: false 
+  addBook:
+    handler: ./src/functions/book/handler.addBook
+    timeout: 900
+    events:
+      - http:
+          method: post
+          path: books
+          private: false
+  updateBook:
+    handler: ./src/functions/book/handler.updateBook
+    timeout: 900
+    events:
+      - http:
+          method: put
+          path: books
+          private: false        
+  deleteBook:
+    handler: ./src/functions/book/handler.deleteBook
+    timeout: 900
+    events:
+      - http:
+          method: delete
+          path: books/{isbn}
+          private: false 
+  # Authors Endpoints 
+  getAuthors:
+    handler: ./src/functions/author/handler.getAuthors
+    timeout: 900
+    events:
+      - http:
+          method: get
+          path: authors
+          private: false
+  getAuthor:
+    handler: ./src/functions/author/handler.getAuthor
+    timeout: 900
+    events:
+      - http:
+          method: get
+          path: authors/{id}
+          private: false 
+  addAuthor:
+    handler: ./src/functions/author/handler.addAuthor
+    timeout: 900
+    events:
+      - http:
+          method: post
+          path: authors
+          private: false
+  updateAuthor:
+    handler: ./src/functions/author/handler.updateAuthor
+    timeout: 900
+    events:
+      - http:
+          method: put
+          path: authors
+          private: false        
+  deleteAuthor:
+    handler: ./src/functions/author/handler.deleteAuthor
+    timeout: 900
+    events:
+      - http:
+          method: delete
+          path: authors/{id}
+          private: false
+  # Publisher Endpoints 
+  getPublishers:
+    handler: ./src/functions/publisher/handler.getPublishers
+    timeout: 900
+    events:
+      - http:
+          method: get
+          path: publishers
+          private: false
+  getPublisher:
+    handler: ./src/functions/publisher/handler.getPublisher
+    timeout: 900
+    events:
+      - http:
+          method: get
+          path: publishers/{id}
+          private: false 
+  addPublisher:
+    handler: ./src/functions/publisher/handler.addPublisher
+    timeout: 900
+    events:
+      - http:
+          method: post
+          path: publishers
+          private: false
+  updatePublisher:
+    handler: ./src/functions/publisher/handler.updatePublisher
+    timeout: 900
+    events:
+      - http:
+          method: put
+          path: publishers
+          private: false        
+  deletePublisher:
+    handler: ./src/functions/publisher/handler.deletePublisher
+    timeout: 900
+    events:
+      - http:
+          method: delete
+          path: publishers/{id}
+          private: false        

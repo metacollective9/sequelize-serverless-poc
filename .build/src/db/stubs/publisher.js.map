@@ -1,0 +1,1 @@
+{"version":3,"file":"publisher.js","sourceRoot":"","sources":["../../../../src/db/stubs/publisher.ts"],"names":[],"mappings":";;;AAEa,QAAA,cAAc,GAAqD;IAC5E;QACE,EAAE,EAAE,CAAC;QACL,IAAI,EAAE,SAAS;QACf,OAAO,EAAC,iBAAiB;KAC1B;IACD;QACE,EAAE,EAAE,CAAC;QACL,IAAI,EAAE,eAAe;QACrB,OAAO,EAAC,cAAc;KACvB;IACD;QACE,EAAE,EAAE,CAAC;QACL,IAAI,EAAE,UAAU;QAChB,OAAO,EAAC,oBAAoB;KAC7B;CACF,CAAC"}
