@@ -16,13 +16,13 @@ switch (process.env.STAGE) {
     allowed_origins = [ "*"];
     break;
   case "qa":
-    allowed_origins = ["https://taps-qa.dk.com"];
+    allowed_origins = ["https://qa.example.com"];
     break;
   case "prod":
-    allowed_origins = ["https://taps.dk.com"];
+    allowed_origins = ["https://www.example.com"];
     break;
   default:
-    allowed_origins = [ "https://taps-dev.dk.com", "http://localhost:4200"];
+    allowed_origins = [ "https://dev.example.com", "http://localhost:4200"];
     break;
 }
 
